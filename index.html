@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GL Security Bot - Painel de Controle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="generated-icon.jpg" type="image/jpeg">
+</head>
+<body>
+    <header>
+        <h1>GL Security Bot - Painel de Controle</h1>
+    </header>
+
+    <main>
+        <section id="server-settings" class="card">
+            <h2>Configurações do Servidor</h2>
+            <div class="input-group">
+                <label for="serverId">ID do Servidor:</label>
+                <input type="text" id="serverId" placeholder="Cole o ID do servidor aqui">
+                <button id="loadSettingsBtn">Carregar Configurações</button>
+            </div>
+
+            <div id="settings-form" style="display: none;">
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="blockProfaneWords"> Bloquear Palavras Ofensivas
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="blockLinks"> Bloquear Links
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="blockInvites"> Bloquear Convites Discord
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="warningType">Tipo de Aviso:</label>
+                    <select id="warningType">
+                        <option value="dm">Mensagem Direta (DM)</option>
+                        <option value="public">Público no Canal</option>
+                        <option value="both">Ambos</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="adminOnlyCommands"> Apenas Admins Podem Usar Comandos
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="autoDeleteWarnings"> Auto-Deletar Avisos Públicos
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="warningDeleteDelay">Atraso para Deletar Avisos (segundos):</label>
+                    <input type="number" id="warningDeleteDelay" min="10" value="60">
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="logViolations"> Registrar Violações no DB
+                    </label>
+                </div>
+                <button id="saveSettingsBtn">Salvar Configurações</button>
+                <p id="settingsMessage" class="message"></p>
+            </div>
+        </section>
+
+        <section id="profane-words" class="card">
+            <h2>Palavras Ofensivas Globais</h2>
+            <p>Estas palavras são bloqueadas em *todos* os servidores, a menos que o bloqueio de palavras ofensivas esteja desativado para um servidor específico. Para alterar, edite o arquivo `bot_config.json` do bot manualmente.</p>
+            <button id="showProfaneWordsBtn">Mostrar Palavras Globais</button>
+            <ul id="profaneWordsList" style="display: none;">
+                </ul>
+        </section>
+
+        <section id="violations-log" class="card">
+            <h2>Log de Violações Recentes</h2>
+            <button id="refreshViolationsBtn">Atualizar Log</button>
+            <div class="table-container">
+                <table id="violationsTable">
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Servidor</th>
+                            <th>Usuário</th>
+                            <th>Tipo</th>
+                            <th>Razão</th>
+                            <th>Conteúdo da Mensagem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+            <p id="violationsMessage" class="message"></p>
+        </section>
+
+        <section id="api-status" class="card">
+            <h2>Status da API</h2>
+            <p id="apiStatusMessage">Verificando status...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 GL Security Bot. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
